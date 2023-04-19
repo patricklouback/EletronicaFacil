@@ -26,10 +26,14 @@ export default function Page() {
   const router = useRouter();
 
   const [fontLoaded, setFontLoaded] = useState(false);
-  const [prompt, setPrompt] = useState('');
-  const [text, setText] = useState('');
-  const [resposta, setResposta] = useState('Resposta');
+  const [v, setV] = useState('');
+  const [r, setR] = useState('');
+  const [i, setI] = useState('');
+  const [voltz, setVoltz] = useState(0.0);
+  const [ohm, setOhm] = useState(0.0);
+  const [amper, setAmper] = useState(0.0);
   const [loading, setLoading] = useState(false);
+  const [resposta, setResposta] = useState('Resposta');
 
   useEffect(() => {
     async function loadFonts() {
@@ -40,9 +44,90 @@ export default function Page() {
     }
     loadFonts();
   }, []);
+  
+  useEffect(()=>{
+    
+    if(!NaN) {
+      setI(toString(amper))
+    }
+    
+
+  },[amper])
 
   if (!fontLoaded) {
     return null;
+  }
+
+
+  function calcular() {
+
+    if (v == '' && r != '' && i != '') {
+      console.log('primeiro if')
+
+      if (!isNaN(parseFloat(r))){
+        ohm = parseFloat(r)
+      } else {
+        setR('')
+      }
+
+      if (!isNaN(parseFloat(i))){
+        amper = parseFloat(i)
+      } else {
+        setI('')
+      }
+
+      voltz = ohm * amper
+      setV(voltz)
+
+    } else if (v != '' && r == '' && i != '') {
+
+      console.log('segundo if')
+
+      if (!isNaN(parseFloat(v))){
+        ohm = parseFloat(v)
+      } else {
+        setV('')
+      }
+
+      if (!isNaN(parseFloat(i))){
+        amper = parseFloat(i)
+      } else {
+        setI('')
+      }
+
+      ohm = voltz / amper
+      setR(ohm)
+
+    } else if (v != '' && r != '' && i == '') {
+
+      console.log('terceiro if')
+
+      if (!isNaN(parseFloat(v))){
+        setVoltz(parseFloat(v))
+        console.log('v = ', voltz)
+      } else {
+        setV('')
+      }
+
+      if (!isNaN(parseFloat(r))){
+        setOhm(parseFloat(r))
+        console.log('r = ', ohm)
+      } else {
+        setR('')
+      }
+
+      setAmper(voltz / ohm)
+      console.log('amper = ', amper)
+
+    } else {
+
+      console.log('ultimo else')
+
+      setV('')
+      setR('')
+      setI('')
+
+    }
   }
 
   return (
@@ -51,7 +136,7 @@ export default function Page() {
         <Ionicons name='arrow-back' size={35} color="#333333" />
       </TouchableOpacity>
       <Image
-        style={{ width: 150, height: 150, alignSelf: 'center' }}
+        style={{ width: 130, height: 130, alignSelf: 'center' }}
         source={logo}
         placeholder={'placeholder'}
         contentFit="cover"
@@ -63,33 +148,33 @@ export default function Page() {
       <Body>
         <AreaHorizon>
           <InputOhm
-            value={text}
-            onChangeText={setText}
+            value={v}
+            onChangeText={setV}
             placeholder="V"
             placeholderTextColor="#C3C3C3"
             multiline={true} />
           <Title>=</Title>
           <InputOhm
-            value={text}
-            onChangeText={setText}
+            value={r}
+            onChangeText={setR}
             placeholder="R"
             placeholderTextColor="#C3C3C3"
             multiline={true} />
           <Title>x</Title>
           <InputOhm
-            value={text}
-            onChangeText={setText}
+            value={i}
+            onChangeText={setI}
             placeholder="I"
             placeholderTextColor="#C3C3C3"
             multiline={true} />
         </AreaHorizon>
         <AreaBtn>
           <BtnType
-            height="60px"
-            onPress={() => { }}
+            height="45px"
+            onPress={calcular}
             disabled={loading}>
             {loading && <ActivityIndicator size="large" color="#DDD" />}
-            {!loading && <BtnText>Pesquisar</BtnText>}
+            {!loading && <BtnText>Calcular</BtnText>}
           </BtnType>
         </AreaBtn>
         <Line />
@@ -105,7 +190,7 @@ export default function Page() {
             onPress={()=>{}}
             width="54px"
             height="60px"
-            color="#9BDBB1">
+            color="#F2F2F2">
             <Ionicons name='refresh-circle' size={35} color="#333333" />
           </BtnType>
         </AreaBtn>
