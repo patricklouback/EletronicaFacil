@@ -1,34 +1,69 @@
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState, useEffect } from 'react';
+import * as Font from 'expo-font';
+import { useRouter } from 'expo-router';
+import { Image } from 'expo-image';
+import { TouchableOpacity } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import logo from '../assets/images/logo-eletronica-facil.png'
+import { AreaBtn, AreaTitleIcon, Body, BtnText, BtnType, Container, Description, Line, Title } from "./styles"
+
 
 export default function Page() {
+  const router = useRouter();
+
+  const [fontLoaded, setFontLoaded] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  useEffect(() => {
+    async function loadFonts() {
+      await Font.loadAsync({
+        'Inter': require('../assets/fonts/Montserrat-Regular.ttf'),
+      });
+      setFontLoaded(true);
+    }
+    loadFonts();
+  }, []);
+
+  if (!fontLoaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <View style={styles.main}>
-        <Text style={styles.title}>Hello World</Text>
-        <Text style={styles.subtitle}>This is the first page of your app.</Text>
-      </View>
-    </View>
+    <Container>
+       <Image
+       style={{width: 200, height: 200, alignSelf: 'center'}}
+       source={logo}
+       placeholder={'placeholder'}
+       contentFit="cover"
+       transition={1000}
+      />
+      <Description>Selecione o tipo de ajuda que deseja:</Description>
+      <Line />
+
+      <Body>
+        <AreaBtn>
+          <BtnType onPress={() => router.push("./screens/leiDeOhm")}>
+            <BtnText>Lei</BtnText>
+            <BtnText>de Ohm</BtnText>
+          </BtnType>
+          <BtnType color="#69BFAF" >
+            <BtnText>Código de</BtnText>
+            <BtnText>cores - Res</BtnText>
+          </BtnType>
+        </AreaBtn>
+
+        <AreaBtn>
+          <BtnType color="#69BFAF" >
+            <BtnText>TL 431</BtnText>
+          </BtnType>
+          <BtnType>
+            <BtnText>Calcular</BtnText>
+            <BtnText>Req</BtnText>
+          </BtnType>
+        </AreaBtn>
+
+      </Body>
+      <Line />
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    padding: 24,
-  },
-  main: {
-    flex: 1,
-    justifyContent: "center",
-    maxWidth: 960,
-    marginHorizontal: "auto",
-  },
-  title: {
-    fontSize: 64,
-    fontWeight: "bold",
-  },
-  subtitle: {
-    fontSize: 36,
-    color: "#38434D",
-  },
-});
