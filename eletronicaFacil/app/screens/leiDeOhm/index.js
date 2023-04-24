@@ -21,6 +21,8 @@ import {
   Resp
 } from "../styles"
 
+import { calcularLeiDeOhm } from '../../utils/functions/calculaLeiDeOhm';
+
 
 export default function Page() {
   const router = useRouter();
@@ -29,9 +31,6 @@ export default function Page() {
   const [v, setV] = useState('');
   const [r, setR] = useState('');
   const [i, setI] = useState('');
-  const [voltz, setVoltz] = useState(0.0);
-  const [ohm, setOhm] = useState(0.0);
-  const [amper, setAmper] = useState(0.0);
   const [loading, setLoading] = useState(false);
   const [resposta, setResposta] = useState('Resposta');
 
@@ -45,89 +44,19 @@ export default function Page() {
     loadFonts();
   }, []);
   
-  useEffect(()=>{
-    
-    if(!NaN) {
-      setI(toString(amper))
-    }
-    
-
-  },[amper])
-
   if (!fontLoaded) {
     return null;
   }
 
-
   function calcular() {
+    let resultado = calcularLeiDeOhm(v, r, i)
+    setResposta(resultado)
+  }
 
-    if (v == '' && r != '' && i != '') {
-      console.log('primeiro if')
-
-      if (!isNaN(parseFloat(r))){
-        ohm = parseFloat(r)
-      } else {
-        setR('')
-      }
-
-      if (!isNaN(parseFloat(i))){
-        amper = parseFloat(i)
-      } else {
-        setI('')
-      }
-
-      voltz = ohm * amper
-      setV(voltz)
-
-    } else if (v != '' && r == '' && i != '') {
-
-      console.log('segundo if')
-
-      if (!isNaN(parseFloat(v))){
-        ohm = parseFloat(v)
-      } else {
-        setV('')
-      }
-
-      if (!isNaN(parseFloat(i))){
-        amper = parseFloat(i)
-      } else {
-        setI('')
-      }
-
-      ohm = voltz / amper
-      setR(ohm)
-
-    } else if (v != '' && r != '' && i == '') {
-
-      console.log('terceiro if')
-
-      if (!isNaN(parseFloat(v))){
-        setVoltz(parseFloat(v))
-        console.log('v = ', voltz)
-      } else {
-        setV('')
-      }
-
-      if (!isNaN(parseFloat(r))){
-        setOhm(parseFloat(r))
-        console.log('r = ', ohm)
-      } else {
-        setR('')
-      }
-
-      setAmper(voltz / ohm)
-      console.log('amper = ', amper)
-
-    } else {
-
-      console.log('ultimo else')
-
-      setV('')
-      setR('')
-      setI('')
-
-    }
+  function atualizar() {
+    setV('')
+    setR('')
+    setI('')
   }
 
   return (
@@ -187,7 +116,7 @@ export default function Page() {
         <AreaBtn>
           <BtnType
             disabled={loading}
-            onPress={()=>{}}
+            onPress={atualizar}
             width="54px"
             height="60px"
             color="#F2F2F2">
