@@ -46,7 +46,7 @@ export default function Page() {
             <BtnText>Lei</BtnText>
             <BtnText>de Ohm</BtnText>
           </BtnType>
-          <BtnType color="#69BFAF" >
+          <BtnType color="#69BFAF" onPress={() => router.push("./screens/codCoresRes")} >
             <BtnText>Código de</BtnText>
             <BtnText>cores - Res</BtnText>
           </BtnType>

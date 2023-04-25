@@ -85,6 +85,50 @@ export const AreaHorizon = styled.View`
     align-items: center;
 `;
 
+export const Cor1 = styled.TouchableOpacity`
+    display: flex;
+    position: absolute;
+    top: 60px;
+    left: 98px;
+    width: 22px;
+    height: 80px;
+    background-color: ${(props) => props.color || '#FDCA01'};
+    border-radius: 5px;
+`;
+
+export const Cor2 = styled.TouchableOpacity`
+    display: flex;
+    position: absolute;
+    top: 65px;
+    left: 130px;
+    width: 22px;
+    height: 70px;
+    background-color: ${(props) => props.color || '#9F0099'};
+    border-radius: 5px;
+`;
+
+export const Cor3 = styled.TouchableOpacity`
+    display: flex;
+    position: absolute;
+    top: 65px;
+    left: 160px;
+    width: 22px;
+    height: 70px;
+    background-color: ${(props) => props.color || '#F44800'};
+    border-radius: 5px;
+`;
+
+export const Cor4 = styled.TouchableOpacity`
+    display: flex;
+    position: absolute;
+    top: 60px;
+    left: 218px;
+    width: 22px;
+    height: 80px;
+    background-color: ${(props) => props.color || '#C78402'};
+    border-radius: 5px;
+`;
+
 export const InputOhm = styled.TextInput`
     width: 90px;
     height: 70px;
