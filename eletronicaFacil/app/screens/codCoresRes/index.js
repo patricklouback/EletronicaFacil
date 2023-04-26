@@ -29,6 +29,8 @@ import {
 } from "../styles"
 
 import { calcularLeiDeOhm } from '../../utils/functions/calculaLeiDeOhm';
+import { codigoDeCores } from '../../utils/functions/codigoDeCores';
+import { formataValorResistor } from '../../utils/functions/formataValorResistor';
 
 
 export default function Page() {
@@ -52,15 +54,20 @@ export default function Page() {
             setFontLoaded(true);
         }
         loadFonts();
+        const result = codigoDeCores(v1,v2,v3,v4)
+        const formatResult = formataValorResistor(result)
+        setResposta(formatResult + ' Ohms')
     }, []);
+
+    useEffect(()=>{
+        const result = codigoDeCores(v1,v2,v3,v4)
+        const formatResult = formataValorResistor(result)
+        setResposta(formatResult + ' Ohms')
+    },[v1, v2, v3, v4])
 
     if (!fontLoaded) {
         return null;
     }
-
-    useEffect(()=>{
-        setResposta(v1)
-    },[v1, v2, v3, v4])
 
 
     return (

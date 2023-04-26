@@ -153,5 +153,6 @@ export const AreaResp = styled.View`
 
 export const Resp = styled.Text`
     color: #4A4A4A;
-    font-size: 16px;
+    font-size: 32px;
+    padding-top: 10px
 `;
