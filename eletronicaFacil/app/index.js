@@ -56,7 +56,7 @@ export default function Page() {
           <BtnType color="#69BFAF" onPress={() => router.push("./screens/tl431")}>
             <BtnText>TL 431</BtnText>
           </BtnType>
-          <BtnType>
+          <BtnType onPress={() => router.push("./screens/calcularResParalelo")}>
             <BtnText>Calcular</BtnText>
             <BtnText>Req</BtnText>
           </BtnType>

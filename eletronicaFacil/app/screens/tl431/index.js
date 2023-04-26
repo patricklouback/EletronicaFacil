@@ -37,9 +37,9 @@ import { calcularTL } from '../../utils/functions/calcularTl';
 
 export default function Page() {
     const router = useRouter();
-    const [v, setV] = useState(0.0);
-    const [r1, setR1] = useState(0.0);
-    const [r2, setR2] = useState(0.0);
+    const [v, setV] = useState('');
+    const [r1, setR1] = useState('');
+    const [r2, setR2] = useState('');
     const [fontLoaded, setFontLoaded] = useState(false);
     const [resposta, setResposta] = useState('Resposta');
 
@@ -65,9 +65,9 @@ export default function Page() {
     }
 
     function atualizar() {
-        setV(0.0)
-        setR1(0.0)
-        setR2(0.0)
+        setV('')
+        setR1('')
+        setR2('')
     }
 
     return (
@@ -82,7 +82,7 @@ export default function Page() {
                 contentFit="cover"
                 transition={1000}
             />
-            <Description>Selecione as Cores para descobrir o valor do resistor</Description>
+            <Description>Insira os valores que você tem e deixe o que quer descobrir em branco.</Description>
             <Line />
 
             <Body>
