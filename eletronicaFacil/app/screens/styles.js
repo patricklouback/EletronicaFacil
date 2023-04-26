@@ -36,7 +36,7 @@ export const Line = styled.View`
 
 export const Body = styled.View`
     width: 358px;
-    height: 380px;
+    height: 420px;
     justify-content: space-around;
     
 `;
@@ -81,6 +81,12 @@ export const BtnText = styled.Text`
 export const AreaHorizon = styled.View`
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+`;
+
+export const AreaVertical = styled.View`
+    display: flex;
     justify-content: space-between;
     align-items: center;
 `;
@@ -142,6 +148,17 @@ export const InputOhm = styled.TextInput`
 
 export const AreaResp = styled.View`
     width: 100%;
+    height: 95px;
+    background: rgba(105, 179, 71, 0.21);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 5px 0px;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const AreaResp1 = styled.View`
+    width: 80%;
     height: 95px;
     background: rgba(105, 179, 71, 0.21);
     border-radius: 8px;

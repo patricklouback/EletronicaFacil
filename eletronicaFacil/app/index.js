@@ -53,7 +53,7 @@ export default function Page() {
         </AreaBtn>
 
         <AreaBtn>
-          <BtnType color="#69BFAF" >
+          <BtnType color="#69BFAF" onPress={() => router.push("./screens/tl431")}>
             <BtnText>TL 431</BtnText>
           </BtnType>
           <BtnType>
