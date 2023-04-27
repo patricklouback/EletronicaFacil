@@ -1,18 +1,21 @@
-# EletronicaFacil
-Este é um aplicativo simples de cálculo de elétrica e eletrônica criado em React Native. Inclui cálculos de circuitos elétricos básicos, resistência, capacitância e indutância.
+# EletronicaFacil 🧮
 
-# Expo Router 
+Este é um aplicativo móvel criado em React Native para auxiliar em cálculos de eletricidade e eletrônica. O app inclui quatro telas diferentes para diferentes tipos de cálculos:
 
-Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
+1- 📐 Calculadora de Lei de Ohm (V = R * I)
+2- 🌈 Decodificador de resistores a partir das cores
+3- 🔌 Calculadora de tensão ou resistência usando o TL431
+4- 🤝 Calculadora de pares de resistores para encontrar a resistência equivalente.
 
 ## 🚀 How to use
+
+Para utilizar o EletronicaFacil, basta clonar este repositório e instalar as dependências utilizando o seguinte comando no terminal:
 
 ```sh
 npx create-react-native-app -t with-router
 ```
 
-## 📝 Notes
-
-- [Expo Router: Docs](https://expo.github.io/router)
-- [Expo Router: Repo](https://github.com/expo/router)
-- [Request for Comments](https://github.com/expo/router/discussions/1)
+## Links úteis 🔗
+Expo Router - https://expo.github.io/router
+Styled Components - https://styled-components.com/
+React Native - https://reactnative.dev/
