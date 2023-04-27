@@ -16,6 +16,6 @@ npx create-react-native-app -t with-router
 ```
 
 ## Links úteis 🔗
-[Expo Router](https://expo.github.io/router)
-[Styled Components](https://styled-components.com/)
+[Expo Router](https://expo.github.io/router)  
+[Styled Components](https://styled-components.com/)  
 [React Native](https://reactnative.dev/)
